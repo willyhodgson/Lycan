@@ -1,0 +1,41 @@
+import tkinter as tk
+from tkinter import messagebox
+
+class SecurityApp:
+    def __init__(self, root):
+        self.root = root
+        self.root.title("App de Seguridad")
+        self.root.geometry("300x200")
+
+        self.create_widgets()
+
+    def create_widgets(self):
+        self.label_username = tk.Label(self.root, text="Usuario")
+        self.label_username.pack(pady=5)
+
+        self.entry_username = tk.Entry(self.root)
+        self.entry_username.pack(pady=5)
+
+        self.label_password = tk.Label(self.root, text="Contraseña")
+        self.label_password.pack(pady=5)
+
+        self.entry_password = tk.Entry(self.root, show="*")
+        self.entry_password.pack(pady=5)
+
+        self.login_button = tk.Button(self.root, text="Iniciar Sesión", command=self.check_credentials)
+        self.login_button.pack(pady=20)
+
+    def check_credentials(self):
+        username = self.entry_username.get()
+        password = self.entry_password.get()
+
+        # Aquí puedes agregar tu lógica de verificación de credenciales
+        if username == "admin" and password == "password":
+            messagebox.showinfo("Login Exitoso", "Bienvenido a la App de Seguridad")
+        else:
+            messagebox.showerror("Login Fallido", "Usuario o Contraseña Incorrectos")
+
+if __name__ == "__main__":
+    root = tk.Tk()
+    app = SecurityApp(root)
+    root.mainloop()
